@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/bitrise-steplib/steps-authenticate-with-github-oauth",
+	"ImportPath": "github.com/bitrise-steplib/steps-authenticate-with-bitbucket-oauth",
 	"GoVersion": "go1.7",
 	"GodepVersion": "v79",
 	"Packages": [
@@ -30,6 +30,10 @@
 			"ImportPath": "github.com/bitrise-steplib/steps-authenticate-host-with-netrc/netrcutil",
 			"Comment": "0.9.0",
 			"Rev": "8d2b815fa92df234f854fb09b8eeeb43357a2ca4"
+		},
+		{
+			"ImportPath": "github.com/bitrise-tools/go-steputils/input",
+			"Rev": "4d564bfeca0fbb7a9e148fb0efd7e7ddf0ed2ead"
 		}
 	]
 }
