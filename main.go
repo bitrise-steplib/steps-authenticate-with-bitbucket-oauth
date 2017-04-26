@@ -2,16 +2,16 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"strings"
 	"time"
-
-	"fmt"
 
 	"github.com/bitrise-io/depman/pathutil"
 	"github.com/bitrise-io/go-utils/fileutil"
 	"github.com/bitrise-io/go-utils/log"
 	"github.com/bitrise-steplib/steps-authenticate-host-with-netrc/netrcutil"
+	"github.com/bitrise-tools/go-steputils/input"
 )
 
 // ConfigsModel ...
@@ -30,26 +30,19 @@ func createConfigsModelFromEnvs() ConfigsModel {
 }
 
 func (configs *ConfigsModel) validate() error {
-	if configs.Username == "" {
-		return errors.New("No Username parameter specified")
+	if err := input.ValidateIfNotEmpty(configs.Username); err != nil {
+		return errors.New("Username, parameter not specified")
 	}
-	if configs.AccessToken == "" {
-		return errors.New("No AccessToken parameter specified")
+	if err := input.ValidateIfNotEmpty(configs.AccessToken); err != nil {
+		return errors.New("AppPassword, parameter not specified")
 	}
 	return nil
-}
-
-func secureInput(input string) string {
-	if input != "" {
-		return "***"
-	}
-	return ""
 }
 
 func (configs *ConfigsModel) print() {
 	log.Infof("Configs:")
 	log.Printf("- Username: %s", configs.Username)
-	log.Printf("- AppPassword: %s", secureInput(configs.AccessToken))
+	log.Printf("- AppPassword: %s", input.SecureInput(configs.AccessToken))
 }
 
 func failf(message string, args ...interface{}) {
