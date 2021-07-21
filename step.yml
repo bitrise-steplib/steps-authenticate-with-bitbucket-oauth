@@ -1,9 +1,29 @@
-title: Authenticate with Bitbucket OAuth
-summary: Adds your Bitbucket OAuth config to the .netrc file
+title: "Authenticate with Bitbucket OAuth"
+summary: |-
+  Adds your Bitbucket OAuth configuration to the `.netrc` file.
+
 description: |-
-  Adds your Bitbucket OAuth config to the .netrc file.
-  
-  If you already have a .netrc file, the step will create a backup of the original, and appends the configs to the current one.
+  [This Step](https://github.com/bitrise-steplib/steps-authenticate-with-bitbucket-oauth) adds the authentication configuration (Bitbucket username and App password) to the `.netrc` file .
+  Please note that if you already have a `.netrc` file, the Step will create a backup of the original, and appends the configs to the current one.
+
+  ### Configuring the Step
+  1.Add your **Bitbucket username**.
+  2. Add your Bitbucket **App Password**.
+  To get your Bitbucket App Password, follow the instructions below:
+  1. Log into your Bitbucket account.
+  2. In the left sidebar, click **App passwords**.
+  3. Click **Create app password**.
+  4. Give your password a descriptive label.
+  5. Select the permissions you'd like to grant to this token.
+  6. Click **Create**.
+
+  ### Useful links
+  - [Learn more what the .netrc file format comprises of](https://everything.curl.dev/usingcurl/netrc#the-netrc-file-format)
+
+  ### Related Steps
+  - [Activate SSH key (RSA private key)](https://www.bitrise.io/integrations/steps/activate-ssh-key)
+  - [Connect to OpenVPN Server](https://www.bitrise.io/integrations/steps/open-vpn)
+
 website: https://github.com/bitrise-steplib/steps-authenticate-with-bitbucket-oauth
 source_code_url: https://github.com/bitrise-steplib/steps-authenticate-with-bitbucket-oauth
 support_url: https://github.com/bitrise-steplib/steps-authenticate-with-bitbucket-oauth/issues
