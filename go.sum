@@ -1,5 +1,7 @@
+github.com/bitrise-io/depman v0.0.0-20160708153333-4c59bc31f02a/go.mod h1:jeK3Koe+wXMSwfl8t6M7kovGgXsayUJ5ybqo3gDJgts=
 github.com/bitrise-io/depman v0.0.0-20190402141727-e5c92c35cd92 h1:+alkNYr5sbvCpvu2YQC4SLddnIP2BeAIjr8/EsObonw=
 github.com/bitrise-io/depman v0.0.0-20190402141727-e5c92c35cd92/go.mod h1:jeK3Koe+wXMSwfl8t6M7kovGgXsayUJ5ybqo3gDJgts=
+github.com/bitrise-io/go-utils v0.0.0-20170404153453-c8163959178a/go.mod h1:Pp48eQd8BSNEzWWTBxdFUd/ufS5b5Bgkmt9D5NedjWg=
 github.com/bitrise-io/go-utils v1.0.3 h1:xKy0WyiJtRPqeKl/HrwQJ0QdjNOOUhiVHs81RMDwD94=
 github.com/bitrise-io/go-utils v1.0.3/go.mod h1:ZY1DI+fEpZuFpO9szgDeICM4QbqoWVt0RSY3tRI1heY=
 github.com/bitrise-steplib/steps-authenticate-host-with-netrc v0.0.0-20211028100945-bd3986570f62 h1:7GyraBhX4O51EFaRt8S3zdb5o7bgyZ6z533hmuA3NlU=
@@ -19,6 +21,7 @@ github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+
 github.com/stretchr/objx v0.3.0/go.mod h1:qt09Ya8vawLte6SNmTgCsAVtYtaKzEcn8ATUoHMkEqE=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
 github.com/stretchr/objx v0.5.0/go.mod h1:Yh+to48EsGEfYuaHDzXPcE3xhTkx73EhmCGUpEOglKo=
+github.com/stretchr/testify v1.1.5-0.20170130113145-4d4bfba8f1d1/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=

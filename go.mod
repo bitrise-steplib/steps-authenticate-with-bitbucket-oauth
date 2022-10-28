@@ -1,6 +1,6 @@
 module github.com/bitrise-steplib/steps-authenticate-with-bitbucket-oauth
 
-go 1.18
+go 1.17
 
 require (
 	github.com/bitrise-io/depman v0.0.0-20190402141727-e5c92c35cd92
