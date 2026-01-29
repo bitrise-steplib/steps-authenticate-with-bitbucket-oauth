@@ -7,8 +7,9 @@ description: |-
   Please note that if you already have a `.netrc` file, the Step will create a backup of the original, and appends the configs to the current one.
 
   ### Configuring the Step
-  1.Add your **Bitbucket username**.
+  1. Add your **Bitbucket username**.
   2. Add your Bitbucket **App Password**.
+
   To get your Bitbucket App Password, follow the instructions below:
   1. Log into your Bitbucket account.
   2. In the left sidebar, click **App passwords**.
