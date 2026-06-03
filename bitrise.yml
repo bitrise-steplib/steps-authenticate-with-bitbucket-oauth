@@ -7,6 +7,8 @@ app:
   # define these in your .bitrise.secrets.yml
   - USERNAME: $USERNAME
   - ACCESS_TOKEN: $TOKEN
+  # Literal test value used by the split-credential .netrc assertion below.
+  - ATLASSIAN_EMAIL: atlassian-test@example.com
   - STEP_ID_IN_STEPLIB: authenticate-with-bitbucket-oauth
 
 workflows:
@@ -41,6 +43,39 @@ workflows:
             set -e
             cat ~/.netrc
             echo ""
+    - script:
+        title: Reset .netrc for the split-credential test
+        inputs:
+        - content: |-
+            set -ex
+            rm -f ~/.netrc
+    - path::./:
+        title: Step Test (with atlassian_email)
+        inputs:
+        - username: $USERNAME
+        - access_token: $ACCESS_TOKEN
+        - atlassian_email: $ATLASSIAN_EMAIL
+    - script:
+        title: Verify .netrc is split per host (bitbucket.org + api.bitbucket.org)
+        inputs:
+        - content: |-
+            #!/usr/bin/env bash
+            set -eo pipefail
+            netrc="$HOME/.netrc"
+
+            # bitbucket.org (Git over HTTPS) must authenticate with the Bitbucket username.
+            if ! grep -A2 '^machine bitbucket\.org$' "$netrc" | grep -qF "login $USERNAME"; then
+              echo "FAIL: missing 'machine bitbucket.org' entry with the Bitbucket username login"
+              exit 1
+            fi
+
+            # api.bitbucket.org (REST API) must authenticate with the Atlassian account email.
+            if ! grep -A2 '^machine api\.bitbucket\.org$' "$netrc" | grep -qF "login $ATLASSIAN_EMAIL"; then
+              echo "FAIL: missing 'machine api.bitbucket.org' entry with the Atlassian email login"
+              exit 1
+            fi
+
+            echo "OK: bitbucket.org and api.bitbucket.org each have a .netrc entry with the expected login"
     - script:
         title: Restore .netrc
         inputs:

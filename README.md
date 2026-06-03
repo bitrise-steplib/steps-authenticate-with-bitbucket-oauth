@@ -54,7 +54,7 @@ You can also run this step directly with [Bitrise CLI](https://github.com/bitris
 | --- | --- | --- | --- |
 | `username` | The username used for Bitbucket to login. | required, sensitive |  |
 | `access_token` | Add a **Bitbucket API token** here. The value is stored in `.netrc` and is used to authenticate HTTPS Git operations (clone and push) and REST API calls to Bitbucket.  Bitbucket Cloud is removing app passwords: creating new ones is already disabled, and existing ones stop working during the brownouts starting 2026-06-09, with full removal on 2026-07-28. Create an API token by following the [Bitbucket API token instructions](https://support.atlassian.com/bitbucket-cloud/docs/create-an-api-token/) and use it in this field. | required, sensitive |  |
-| `atlassian_email` | Your Atlassian account email address. Required for REST API calls to api.bitbucket.org when using a Bitbucket API token. With app passwords the Bitbucket username worked for both hosts; with API tokens the REST host requires the Atlassian email instead. Leave empty if this step is used for Git operations only. |  |  |
+| `atlassian_email` | Your Atlassian account email address. Required for REST API calls to api.bitbucket.org when using a Bitbucket API token. With app passwords the Bitbucket username worked for both hosts; with API tokens the REST host requires the Atlassian email instead. Leave empty if this step is used for Git operations only. | sensitive |  |
 </details>
 
 <details>

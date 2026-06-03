@@ -22,7 +22,7 @@ const (
 type ConfigsModel struct {
 	Username       string          `env:"username,required"`
 	AccessToken    stepconf.Secret `env:"access_token,required"`
-	AtlassianEmail string          `env:"atlassian_email"`
+	AtlassianEmail stepconf.Secret `env:"atlassian_email"`
 }
 
 func main() {
@@ -61,7 +61,7 @@ func main() {
 	// token, so it gets a separate entry with a different login. App passwords used the Bitbucket
 	// username for both hosts, so the email is optional and the entry is skipped when it is empty.
 	if configs.AtlassianEmail != "" {
-		netRC.AddItemModel(netrcutil.NetRCItemModel{Machine: apiHost, Login: configs.AtlassianEmail, Password: string(configs.AccessToken)})
+		netRC.AddItemModel(netrcutil.NetRCItemModel{Machine: apiHost, Login: string(configs.AtlassianEmail), Password: string(configs.AccessToken)})
 		logger.Printf("- Added: %s", apiHost)
 	} else {
 		logger.Printf("- Skipped: %s (no atlassian_email provided)", apiHost)

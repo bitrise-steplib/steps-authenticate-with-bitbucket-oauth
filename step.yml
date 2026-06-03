@@ -68,4 +68,4 @@ inputs:
       Your Atlassian account email address. Required for REST API calls to api.bitbucket.org when using a Bitbucket API token. With app passwords the Bitbucket username worked for both hosts; with API tokens the REST host requires the Atlassian email instead. Leave empty if this step is used for Git operations only.
     is_required: false
     is_expand: true
-    is_sensitive: false
+    is_sensitive: true
