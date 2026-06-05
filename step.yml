@@ -53,7 +53,7 @@ inputs:
     is_sensitive: true
 - access_token:
   opts:
-    title: App password or API token
+    title: API token
     description: |-
       Add a **Bitbucket API token** here. The value is stored in `.netrc` and is used to authenticate HTTPS Git operations (clone and push) and REST API calls to Bitbucket.
 
