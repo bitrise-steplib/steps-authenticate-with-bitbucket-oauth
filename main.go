@@ -7,17 +7,22 @@ import (
 	"time"
 
 	"github.com/bitrise-io/go-steputils/v2/stepconf"
-	"github.com/bitrise-io/go-utils/v2/pathutil"
 	"github.com/bitrise-io/go-utils/v2/env"
 	"github.com/bitrise-io/go-utils/v2/fileutil"
 	"github.com/bitrise-io/go-utils/v2/log"
+	"github.com/bitrise-io/go-utils/v2/pathutil"
 	"github.com/bitrise-steplib/steps-authenticate-host-with-netrc/netrcutil"
 )
 
+const (
+	gitHost = "bitbucket.org"
+	apiHost = "api.bitbucket.org"
+)
+
 type ConfigsModel struct {
-	BitbucketHosts []string
 	Username       string          `env:"username,required"`
 	AccessToken    stepconf.Secret `env:"access_token,required"`
+	AtlassianEmail stepconf.Secret `env:"atlassian_email"`
 }
 
 func main() {
@@ -30,7 +35,6 @@ func main() {
 	}
 
 	var configs ConfigsModel
-	configs.BitbucketHosts = []string{"bitbucket.org", "api.bitbucket.org"}
 
 	parser := stepconf.NewInputParser(env.NewRepository())
 	if err := parser.Parse(&configs); err != nil {
@@ -48,9 +52,19 @@ func main() {
 	fmt.Println()
 
 	logger.Infof("Adding host config...")
-	for _, host := range configs.BitbucketHosts {
-		netRC.AddItemModel(netrcutil.NetRCItemModel{Machine: host, Login: configs.Username, Password: string(configs.AccessToken)})
-		logger.Printf("- Added: %s", host)
+
+	// Git over HTTPS on bitbucket.org authenticates with the Bitbucket username and the secret.
+	netRC.AddItemModel(netrcutil.NetRCItemModel{Machine: gitHost, Login: configs.Username, Password: string(configs.AccessToken)})
+	logger.Printf("- Added: %s", gitHost)
+
+	// REST calls to api.bitbucket.org require the Atlassian account email when using a Bitbucket API
+	// token, so it gets a separate entry with a different login. App passwords used the Bitbucket
+	// username for both hosts, so the email is optional and the entry is skipped when it is empty.
+	if configs.AtlassianEmail != "" {
+		netRC.AddItemModel(netrcutil.NetRCItemModel{Machine: apiHost, Login: string(configs.AtlassianEmail), Password: string(configs.AccessToken)})
+		logger.Printf("- Added: %s", apiHost)
+	} else {
+		logger.Printf("- Skipped: %s (no atlassian_email provided)", apiHost)
 	}
 
 	fmt.Println()
